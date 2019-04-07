@@ -50,5 +50,5 @@ void routingManual ()
 		}
 	}
 	while((a!='q'||a!='Q'));
-	return 0;
+	return ;
 }
