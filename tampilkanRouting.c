@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "variable.h"
 
-void main ()
+void tampilkanRouting ()
 {
 	int i,j;
 	for (i=0;i<40;i++)
