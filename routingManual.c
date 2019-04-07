@@ -10,7 +10,7 @@ typedef struct
 void routingManual (jalur pcb[40][40])
 {
 	koordinat koordinatKe[100];
-	int jumlahKoor,i,kolom;
+	int jumlahKoor,i,kolom,baris;
 	int a,b; //menyimpan koordinat sementara
 	char sym;//menyimpan simbol sementara
 	printf ("Isi `q` atau `Q` untuk kembali ke menu\n");
@@ -40,15 +40,24 @@ void routingManual (jalur pcb[40][40])
 		while ((a!='n'||a!='N'||b!='n'||b!='N'));//validasi node
 		if (a!='n'||a!='N'||b!='n'||b!='N')
 		{
-			for (i=1;i<=jumlahKoor;i++)
+			for (i=1;i<jumlahKoor;i++)
 			{
-				for (kolom=koordinatKe[i].y;kolom<koordinatKe[i+1].y;kolom++)
+				if (koordinatKe[i].x==koordinatKe[i+1].x)
 				{
-					pcb[koordinatKe[i].x][kolom].simbol=sym;
+					for (kolom=koordinatKe[i].y;kolom<koordinatKe[i+1].y;kolom++)
+					{
+						pcb[koordinatKe[i].x][kolom].simbol=sym;
+					}
+				}
+				else if (koordinatKe[i].y==koordinatKe[i+1].y)
+				{
+					for (baris=koordinatKe[i].x;baris<koordinatKe[i+1].x;baris++)
+					{
+						pcb[koordinatKe[i].y][baris].simbol=sym;
+					}
 				}
 			}
 		}
 	}
 	while((a!='q'||a!='Q'));
-	return ;
 }
