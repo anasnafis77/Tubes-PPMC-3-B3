@@ -13,7 +13,7 @@ void tampilkanRouting(int n, int m, jalur pcb[40][40]){
 	for (j=0; j<m; j+=1) {
 		printf("%d	", j+1);
 		for(i=0; i<n ; i+=1){
-			printf("%c	", pcb[i][j].listrik.simbol);
+			printf("%c	", pcb[i][j].simbol);
 		}
 		printf("\n");
 	}
