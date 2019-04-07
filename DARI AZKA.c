@@ -110,9 +110,9 @@ void auto_layout(jalur pcb [40][40]) {
 	pcb[4][4].listrik.nomor = '1';
 	
 	pcb[5][0].listrik.nama = 'J';
-	pcb[5][0].listrik.nomor = '1';
+	pcb[5][0].listrik.nomor = '3';
 	pcb[5][9].listrik.nama = 'J';
-	pcb[5][9].listrik.nomor = '1';
+	pcb[5][9].listrik.nomor = '3';
 	
 	pcb[6][5].listrik.nama = 'C';
 	pcb[6][5].listrik.nomor = '1';
@@ -145,9 +145,9 @@ void auto_layout(jalur pcb [40][40]) {
 	pcb[5][10].listrik.nomor = '2';
 	
 	pcb[0][4].listrik.nama = 'J';
-	pcb[0][4].listrik.nomor = '3';
+	pcb[0][4].listrik.nomor = '1';
 	pcb[5][11].listrik.nama = 'J';
-	pcb[5][11].listrik.nomor = '3';
+	pcb[5][11].listrik.nomor = '1';
 	
 	pcb[1][4].listrik.nama = 'C';
 	pcb[1][4].listrik.nomor = '2';
