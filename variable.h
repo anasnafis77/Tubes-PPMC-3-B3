@@ -7,7 +7,7 @@ typedef struct {//nama komponen yang terdiri atas huruf simbol komponen dan nomo
 }komponen;
 
 typedef struct {//tipe data untuk menyatakan komponen dan simbol jalur pada PCB
-	komponen nama;
+	komponen listrik;
 	char simbol;
 }jalur;
 
