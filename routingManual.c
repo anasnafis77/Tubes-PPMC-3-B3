@@ -7,7 +7,7 @@ typedef struct
 	int x,y;
 } koordinat;
 
-void routingManual (jalur pcb[40][40])
+void routingManual (int n, int m, jalur pcb[40][40])
 {
 	koordinat koordinatKe[100];
 	int jumlahKoor,i,kolom,baris;
@@ -20,25 +20,25 @@ void routingManual (jalur pcb[40][40])
 		do
 		{
 			printf ("Pilih Simbol (!,@,#,$,%,^,&,*,(,)):");
-			scanf ("%c", &sym);
+			scanf (" %c", &sym);
 		}
-		while (sym!='!'||sym!='@'||sym!='#'||sym!='$'||sym!='%'||sym!='^'||sym!='&'||sym!='*'||sym!=',');//validasi simbol
+		while (!(sym=='!'||sym=='@'||sym=='#'||sym=='$'||sym=='%'||sym=='^'||sym=='&'||sym=='*'||sym==','));//validasi simbol
 	
 		jumlahKoor=1;
 		do
 		{
-			printf ("Koordinat %d",jumlahKoor);
+			printf ("Koordinat %d : ",jumlahKoor);
 			do
 			{
-				scanf ("%d%*c%d", &a,&b);
+				scanf (" %d%*c%d", &a,&b);
 			}
-			while ((a>40 && a<0 && b>40 && b<0) || (pcb[a][b].listrik.nama=' '));//validasi matriks
+			while ((a>n && a<0 && b>m && b<0) || (pcb[a][b].listrik.nama==' '));//validasi matriks
 			koordinatKe[jumlahKoor].x=a;
 			koordinatKe[jumlahKoor].y=b;
 			jumlahKoor++;
 		}
-		while ((a!='n'||a!='N'||b!='n'||b!='N'));//validasi node
-		if (a!='n'||a!='N'||b!='n'||b!='N')
+		while (!(a=='n'||a=='N'||b=='n'||b=='N'));//validasi node
+		if (!(a=='n'||a=='N'||b=='n'||b=='N'))
 		{
 			for (i=1;i<jumlahKoor;i++)
 			{
@@ -59,5 +59,5 @@ void routingManual (jalur pcb[40][40])
 			}
 		}
 	}
-	while((a!='q'||a!='Q'));
+	while(!(a=='q'||a=='Q'));
 }
