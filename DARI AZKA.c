@@ -4,10 +4,17 @@
 
 void make_layout(int n, int m,jalur pcb[40][40], int *x) { /*x nya itu int count ya */
 	komponen masuk;
-	int inp_x1, inp_y1, inp_x2, inp_y2;
+	int inp_x1, inp_y1, inp_x2, inp_y2,i,j;
 	double jarak;
 	
 	*x=0;
+	
+	for (j=0; j<m; j+=1) {
+		for(i=0; i<n ; i+=1){
+			pcb[i][j].listrik.nama = ' ';
+			pcb[i][j].listrik.nomor = ' ';
+		}
+	}
 	
 	printf("[Mode Layout]\n");
 	printf("Isi 'q' atau 'Q' untuk kembali ke menu\n"); /*WARNING!!! MASUKKAN JUGA ANGKA SETELAH Q ATAU q */
