@@ -7,7 +7,7 @@ typedef struct
 	int x,y;
 } koordinat;
 
-void routingManual ()
+void routingManual (jalur pcb[40][40])
 {
 	koordinat koordinatKe[100];
 	int jumlahKoor,i,kolom;
