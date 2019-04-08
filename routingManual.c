@@ -24,7 +24,6 @@ void routingManual (int n, int m, jalur pcb[40][40])
 			scanf (" %c", &sym);
 		}
 		while (!(sym=='!'||sym=='@'||sym=='#'||sym=='$'||sym=='%'||sym=='^'||sym=='&'||sym=='*'||sym==','));//validasi simbol
-	
 		jumlahKoor=1;
 		do
 		{
@@ -33,9 +32,9 @@ void routingManual (int n, int m, jalur pcb[40][40])
 			{
 				scanf (" %c%*c%c", &a,&b);
 			}
-			while ((atoi(a)>n && atoi(a)<0 && atoi(b)>m && atoi(b)<0) || (pcb[atoi(a)][atoi(b)].listrik.nama==' '));//validasi matriks
-			koordinatKe[jumlahKoor].x=atoi(a);
-			koordinatKe[jumlahKoor].y=atoi(b);
+			while ((atoi(&a)>n && atoi(&a)<0 && atoi(&b)>m && atoi(&b)<0) || (pcb[atoi(&a)][atoi(&b)].listrik.nama==' '));//validasi matriks
+			koordinatKe[jumlahKoor].x=atoi(&a);
+			koordinatKe[jumlahKoor].y=atoi(&b);
 			jumlahKoor++;
 		}
 		while (!(a=='n'||a=='N'||b=='n'||b=='N'));//validasi node
