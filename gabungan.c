@@ -78,7 +78,7 @@ void pilihanMenu()
 						menuUtama ();
 						pilihanMenu ();
 					break;
-				case 2 : make_layout(n, m, pcb, *count);
+				case 2 : make_layout(n, m, pcb, &count);
 						printf ("\n");
 						menuUtama ();
 						pilihanMenu ();
