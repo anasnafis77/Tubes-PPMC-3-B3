@@ -22,7 +22,7 @@ typedef struct
 jalur pcb[40][40]; //matriks PCB 
 
 char fileName[20];
-int n, m, pilihan, menu, *x;
+int n, m, pilihan, menu, count;
 
 //deklarasi fungsi
 void halamanAwal();
@@ -78,7 +78,7 @@ void pilihanMenu()
 						menuUtama ();
 						pilihanMenu ();
 					break;
-				case 2 : make_layout(n, m, pcb, *x);
+				case 2 : make_layout(n, m, pcb, *count);
 						printf ("\n");
 						menuUtama ();
 						pilihanMenu ();
