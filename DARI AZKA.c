@@ -2,7 +2,7 @@
 #include "lib.h"
 #include <math.h>
 
-void make_layout(int n, int m,jalur pcb[40][40], int *x) { /*x nya itu int count ya */
+void make_layout(int n, int m,jalur pcb[40][40], int *x) {
 	komponen masuk;
 	int inp_x1, inp_y1, inp_x2, inp_y2,i,j;
 	double jarak;
