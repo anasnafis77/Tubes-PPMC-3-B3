@@ -22,13 +22,14 @@ typedef struct
 jalur pcb[40][40]; //matriks PCB 
 
 char fileName[20];
-int n, m, pilihan, menu, count;
+int n, m, pilihan, menu, count = 0;
 
 //deklarasi fungsi
 void halamanAwal();
+void pilihanHalaman();
 void menuUtama();
 void pilihanMenu();
-void routingManual (jalur pcb[40][40]);
+void routingManual (int n, int m, jalur pcb[40][40]);
 void make_layout(int n, int m,jalur pcb[40][40], int *x);
 void tampilkanRouting(int n, int m, jalur pcb[40][40]);
 void print_layout(int n, int m, jalur pcb[40][40]);
@@ -43,6 +44,13 @@ int main ()
 	halamanAwal();
 	}
 	while (pilihan < 1 || pilihan > 3);
+	pilihanHalaman();
+	 
+	return (0);
+}
+
+void pilihanHalaman()
+{
 	if (pilihan == 1)
 		{
 			do
@@ -50,23 +58,29 @@ int main ()
 			printf ("========= Membuat Proyek Baru =========\n");
 			printf ("Masukkan nama proyek : ");
 			scanf("%s",&fileName);
-			printf ("Masukkan ukuran PCB NxM (N dan M <40) : ");
-			scanf ("%d %d", &n,&m);
+			do 
+			{
+				printf ("Masukkan ukuran PCB NxM (N dan M <40) : ");
+				scanf ("%d %d", &n,&m);
+			}while ((n<=0&&n>40)&&(m<=0&&m>40));
 			menuUtama ();
 			} while (menu<1 || menu > 8);	
 			pilihanMenu ();	
 		} else if (pilihan == 2)
 		{
+			do
+			{
 			printf ("========= Mengubah File Lama =========\n");
 			printf ("Masukkan nama proyek : ");
 			scanf("%s",&fileName);
+			menuUtama();
+			} while (menu<1 || menu > 8);	
+			pilihanMenu ();
 			
 		} else if (pilihan == 3)
 		{
 			return 0;
 		}
-	 
-	return (0);
 }
 
 void pilihanMenu()
@@ -88,7 +102,7 @@ void pilihanMenu()
 						menuUtama ();
 						pilihanMenu ();
 					break;
-				case 4 : routingManual(pcb);
+				case 4 : routingManual(n,m,pcb);
 						printf ("\n");
 						menuUtama ();
 						pilihanMenu ();
@@ -109,6 +123,7 @@ void pilihanMenu()
 						pilihanMenu ();
 					break;
 				case 8 : halamanAwal();
+						 pilihanHalaman();
 					break;
 			}			
 	
@@ -148,12 +163,11 @@ void menuUtama ()
 	return;
 }
 
-void routingManual (jalur pcb[40][40])
+void routingManual (int n, int m, jalur pcb[40][40])
 {
-	
 	koordinat koordinatKe[100];
-	int jumlahKoor,i,kolom;
-	int a,b; //menyimpan koordinat sementara
+	int jumlahKoor,i,kolom,baris;
+	char a,b; //menyimpan koordinat sementara
 	char sym;//menyimpan simbol sementara
 	printf ("Isi `q` atau `Q` untuk kembali ke menu\n");
 	printf ("Isi `n` atau `N` untuk memulai pada simpul (node) baru\n");
@@ -162,36 +176,50 @@ void routingManual (jalur pcb[40][40])
 		do
 		{
 			printf ("Pilih Simbol (!,@,#,$,%,^,&,*,(,)):");
-			scanf ("%c", &sym);
+			scanf (" %c", &sym);
 		}
-		while (sym!='!'||sym!='@'||sym!='#'||sym!='$'||sym!='%'||sym!='^'||sym!='&'||sym!='*'||sym!=',');//validasi simbol
-	
+		while (!(sym=='!'||sym=='@'||sym=='#'||sym=='$'||sym=='%'||sym=='^'||sym=='&'||sym=='*'||sym==','));//validasi simbol
 		jumlahKoor=1;
 		do
 		{
-			printf ("Koordinat %d",jumlahKoor);
+			printf ("Koordinat %d : ",jumlahKoor);
 			do
 			{
-				scanf ("%d%*c%d", &a,&b);
+				scanf (" %c%*c%c", &a,&b);
 			}
-			while ((a>40 && a<0 && b>40 && b<0) || (pcb[a][b].listrik.nama=' '));//validasi matriks
-			koordinatKe[jumlahKoor].x=a;
-			koordinatKe[jumlahKoor].y=b;
+			while ((atoi(&a)>n && atoi(&a)<0 && atoi(&b)>m && atoi(&b)<0) || (pcb[atoi(&a)][atoi(&b)].listrik.nama==' '));//validasi matriks
+			koordinatKe[jumlahKoor].x=atoi(&a);
+			koordinatKe[jumlahKoor].y=atoi(&b);
 			jumlahKoor++;
 		}
-		while ((a!='n'||a!='N'||b!='n'||b!='N'));//validasi node
-		if (a!='n'||a!='N'||b!='n'||b!='N')
+		while (!(a=='n'||a=='N'||b=='n'||b=='N'));//validasi node
+		if ((a=='n'||a=='N'||b=='n'||b=='N'))
 		{
-			for (i=1;i<=jumlahKoor;i++)
+			for (i=1;i<jumlahKoor;i++)
 			{
-				for (kolom=koordinatKe[i].y;kolom<koordinatKe[i+1].y;kolom++)
+				if (koordinatKe[i].x==koordinatKe[i+1].x)
 				{
-					pcb[koordinatKe[i].x][kolom].simbol=sym;
+					for (kolom=koordinatKe[i].y;kolom<koordinatKe[i+1].y;kolom++)
+					{
+						pcb[koordinatKe[i].x][kolom].simbol=sym;
+					}
+				}
+				else if (koordinatKe[i].y==koordinatKe[i+1].y)
+				{
+					for (baris=koordinatKe[i].x;baris<koordinatKe[i+1].x;baris++)
+					{
+						pcb[koordinatKe[i].y][baris].simbol=sym;
+					}
 				}
 			}
 		}
 	}
-	while((a!='q'||a!='Q'));
+	while(!(a=='q'||a=='Q'));
+	if (a=='q'||a=='Q')
+	{
+		menuUtama();
+		pilihanMenu();
+	}
 }
 
 void tampilkanRouting(int n, int m, jalur pcb[40][40]){
@@ -212,7 +240,7 @@ void tampilkanRouting(int n, int m, jalur pcb[40][40]){
 	
 }
 
-void make_layout(int n, int m,jalur pcb[40][40], int *x) { /*x nya itu int count ya */
+void make_layout(int n, int m,jalur pcb[40][40], int *x) {
 	komponen masuk;
 	int inp_x1, inp_y1, inp_x2, inp_y2,i,j;
 	double jarak;
@@ -294,7 +322,6 @@ void make_layout(int n, int m,jalur pcb[40][40], int *x) { /*x nya itu int count
 
 }
 
-
 void print_layout(int n, int m, jalur pcb[40][40]){
 	int i,j;
 	
@@ -371,14 +398,14 @@ void auto_layout(jalur pcb [40][40]) {
 	
 	int i,j;
 	
-	for (i=0; i<n; i+=1){
+	for (i=0; i<10; i+=1){
 		printf("	%d", i+1);
 	}
 	printf("\n");
 	
-	for (j=0; j<m; j+=1) {
+	for (j=0; j<12; j+=1) {
 		printf("%d	", j+1);
-		for(i=0; i<n ; i+=1){
+		for(i=0; i<10 ; i+=1){
 			printf("%c%c	", pcb[i][j].listrik.nama, pcb[i][j].listrik.nomor);
 		}
 		printf("\n");
@@ -419,14 +446,14 @@ void auto_routing(jalur pcb[40][40]) {
 	pcb[8][11].simbol = '^';
 	pcb[8][10].simbol = '^';
 	
-	for (i=0; i<n; i+=1){
+	for (i=0; i<10; i+=1){
 		printf("	%d", i+1);
 	}
 	printf("\n");
 	
-	for (j=0; j<m; j+=1) {
+	for (j=0; j<12; j+=1) {
 		printf("%d	", j+1);
-		for(i=0; i<n ; i+=1){
+		for(i=0; i<10 ; i+=1){
 			printf("%c	", pcb[i][j].simbol);
 		}
 		printf("\n");
