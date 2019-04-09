@@ -1,0 +1,3 @@
+J2 Vin GND
+R1 Vin Vout
+C1 Vout GND
