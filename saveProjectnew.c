@@ -6,19 +6,19 @@
 //Implementasi saveProject
 void saveProject(jalur pcb[][40], char filename[], int n, int m){
 	FILE *flayout, *froute;
-	char temp1, temp2, temp[3];
-	char file[20];
+	char temp1, temp2, temp[3]; //Variabel temporer untuk menggabungkan char pcb.listrik.nama dan pcb.listrik.nomor
+	char file[20]; //Variabel temporer untuk menyimpan sementara char filename[]
 	
 	strcpy(file, filename);
-	flayout = fopen(strcat(file, "_layout.csv"), "w");
+	flayout = fopen(strcat(file, "_layout.csv"), "w"); //Variabel file digunakan untuk eksternal file layout
 	//Memindahkan isi array ke excel
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < m; j++){
-			fprintf(flayout, ",");
 			if(pcb[i][j].listrik.nama == ' '){
 				fprintf(flayout, ",");
 			}
 			else{
+				//Menggabungkan char menjadi string
 				temp1 = pcb[i][j].listrik.nama;
 				temp2 = pcb[i][j].listrik.nomor;
 				temp[0] = temp1;
@@ -29,7 +29,7 @@ void saveProject(jalur pcb[][40], char filename[], int n, int m){
 		}
 	}
 	fclose(flayout);
-	froute = fopen(strcat(filename, "_routing.csv"), "w");
+	froute = fopen(strcat(filename, "_routing.csv"), "w"); //filename digunakan untuk eksternal file routing
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < m; j++){
 			fprintf(flayout, ",");
