@@ -5,6 +5,8 @@ void open(int n, int m){
 	char c;
 	
 	printf("Masukkan nama file yang ingin dibuka: ");
+	//Menggabungkan input nama file dengan ".csv"
+	//Input nama file bisa jadi layout/routing, validasi dilakukan nanti
 	do{
 		scanf("%s", &filename);
 		strcat(filename, ".csv");
