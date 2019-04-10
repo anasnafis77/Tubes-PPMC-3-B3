@@ -24,11 +24,16 @@ void open(int n, int m){
 		printf("\n");
 		for(j = 0; j < m; j++){
 			printf("%d\t", i);
-			c = fgetc(fptr);
-			if(feof(fptr)){
-				break;
+			fscanf(fptr, "%c" &c);
+			//Jika isinya huruf, berarti layout, kalau bukan berarti routing
+			if(isalpha(c)){
+				printf("%c", c);
+				fscanf(fptr, "%c", &c);
+				printf("%c\t", c);
 			}
-			printf("%c\t", c);
+			else{
+				printf("%c", c);
+			}
 		}
 	}		
 	
