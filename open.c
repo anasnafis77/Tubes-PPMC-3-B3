@@ -26,14 +26,15 @@ void open(int n, int m){
 			printf("%d\t", i);
 			fscanf(fptr, "%c" &c);
 			//Jika isinya huruf, berarti layout, kalau bukan berarti routing
-			if(isalpha(c)){
-				printf("%c", c);
-				fscanf(fptr, "%c", &c);
-				printf("%c\t", c);
-			}
-			else{
-				printf("%c", c);
-			}
+			while(!feof(fptr)){
+				if(isalpha(c)){
+					printf("%c", c);
+					fscanf(fptr, "%c", &c);
+					printf("%c\t", c);
+				}
+				else{
+					printf("%c", c);
+				}
 		}
 	}		
 	
