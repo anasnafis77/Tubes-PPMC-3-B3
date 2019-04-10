@@ -1,0 +1,10 @@
+R1 VCC Vb
+RC VCC Vc
+Co Vc Vout
+Ci Vin Vb
+R2 Vb GND
+RE Ve GND
+CE Ve GND
+J1 Vin GND
+J2 Vout GND
+J3 VCC GND
